@@ -79,6 +79,59 @@ button {
     const supabaseClient = window.supabase.createClient(  
       SUPABASE_URL,  
       SUPABASE_KEY  
-    );  
+    );  async function registrar() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const mensaje = document.getElementById("mensaje");
+
+  if (!email || !password) {
+    mensaje.textContent = "Escribe tu correo y contraseña.";
+    return;
+  }
+
+  mensaje.textContent = "Creando cuenta...";
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      emailRedirectTo: "https://charlescadena360-cpu.github.io/angel-ia/"
+    }
+  });
+
+  if (error) {
+    mensaje.textContent = error.message;
+    return;
+  }
+
+  mensaje.textContent = data.session
+    ? "¡Cuenta creada correctamente!"
+    : "Revisa tu correo para confirmar tu cuenta.";
+}
+
+async function iniciarSesion() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const mensaje = document.getElementById("mensaje");
+
+  if (!email || !password) {
+    mensaje.textContent = "Escribe tu correo y contraseña.";
+    return;
+  }
+
+  mensaje.textContent = "Iniciando sesión...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    mensaje.textContent = error.message;
+    return;
+  }
+
+  mensaje.textContent = "¡Bienvenido a ÁNGEL IA!";
+}
   </script>  </body>  
 </html>
