@@ -60,6 +60,14 @@ button {
     <h3>Ángel Familia</h3>
     <p>Un espacio para familiares y cuidadores.</p>
   </div>
+  <div class="card" id="acceso">
+  <h2>Acceso a ÁNGEL IA</h2>
+  <input id="email" type="email" placeholder="Tu correo electrónico">
+  <input id="password" type="password" placeholder="Tu contraseña">
+  <button onclick="registrar()">Crear cuenta</button>
+  <button onclick="iniciarSesion()">Entrar</button>
+  <p id="mensaje"></p>
+</div>
  </main>    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>    <script>  
     function saludar() {  
       alert("¡Hola! Soy ÁNGEL IA. Estoy aquí para acompañarte.");  
